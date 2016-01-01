@@ -1,2 +1,1 @@
-# windjay_wiki
-Windjay Wiki
+To build the Windjay wiki, execute "make".
