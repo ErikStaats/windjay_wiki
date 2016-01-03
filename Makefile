@@ -18,7 +18,7 @@ TOOLS_DIR := $(TOP)/tools
 # Default target.
 #
 
-.PHONY all
+.PHONY: all
 all: windjay_wiki
 
 
