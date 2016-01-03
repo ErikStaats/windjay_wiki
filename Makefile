@@ -9,11 +9,25 @@
 #
 # Directory structure.
 #
+#   TOP                     Top of source tree.
+#   TOOLS_DIR               Tools directory.
+#   BUILD_DIR               Build directory.
+#   SRC_DIR                 Source directory.
+#
 
 TOP := $(PWD)
 TOOLS_DIR := $(TOP)/tools
 BUILD_DIR := $(TOP)/build
 SRC_DIR := $(TOP)/src
+
+
+#
+# Target variables.
+#
+#   HTML_FILES              List of HTML target files.
+#
+
+HTML_FILES :=
 
 
 #
@@ -31,6 +45,17 @@ all: windjay_wiki
 .PHONY: clean
 clean:
 	rm -Rf tools build
+
+
+#
+# Install target.
+#
+#   This target will install the Windjay wiki on the Windjay wiki server.
+#
+
+.PHONY: install
+install:
+	scp $(HTML_FILES) windjayd@windjay.com://home1/windjayd/public_html/wiki
 
 
 #

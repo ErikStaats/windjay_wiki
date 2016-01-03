@@ -1,0 +1,14 @@
+Verified that "make install" installs Windjay wiki files on the Windjay wiki server.
+
+bash-3.2$ make && make install
+.
+.
+.
+scp /Users/erikstaats/dev/src/windjay_wiki/build/windjay.html windjayd@windjay.com://home1/windjayd/public_html/wiki
+windjayd@windjay.com's password:
+windjay.html                                  100%   17     0.0KB/s   00:00
+bash-3.2$ ssh windjayd@windjay.com ls /home1/windjayd/public_html/wiki
+windjayd@windjay.com's password:
+windjay.html
+bash-3.2$
+
