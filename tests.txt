@@ -1,14 +1,14 @@
-Verified that "make install" installs Windjay wiki files on the Windjay wiki server.
+The following tests were run to validate this commit.
 
-bash-3.2$ make && make install
-.
-.
-.
-scp /Users/erikstaats/dev/src/windjay_wiki/build/windjay.html windjayd@windjay.com://home1/windjayd/public_html/wiki
+Verified that "make install" installs the .htaccess file and that windjay.html is the default file for wiki.windjay.com.
+
+bash-3.2$ make install
+scp /Users/erikstaats/dev/src/windjay_wiki/build/.htaccess /Users/erikstaats/dev/src/windjay_wiki/build/windjay.html \
+            windjayd@windjay.com://home1/windjayd/public_html/wiki
 windjayd@windjay.com's password:
+.htaccess                                     100%   28     0.0KB/s   00:00
 windjay.html                                  100%   17     0.0KB/s   00:00
-bash-3.2$ ssh windjayd@windjay.com ls /home1/windjayd/public_html/wiki
-windjayd@windjay.com's password:
-windjay.html
+bash-3.2$ curl http://wiki.windjay.com
+<h1>Windjay</h1>
 bash-3.2$
 

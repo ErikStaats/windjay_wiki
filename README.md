@@ -8,3 +8,6 @@ To build the Windjay wiki, execute "make".
 
 To install the Windjay wiki files on the Windjay wiki server, execute "make install".
 
+## How to use.
+
+Open wiki.windjay.com.

@@ -55,7 +55,8 @@ clean:
 
 .PHONY: install
 install:
-	scp $(HTML_FILES) windjayd@windjay.com://home1/windjayd/public_html/wiki
+	scp $(call list_files,$(BUILD_DIR)) \
+            windjayd@windjay.com://home1/windjayd/public_html/wiki
 
 
 #
@@ -84,6 +85,17 @@ windjay_wiki: $(HTML_FILES)
 $(BUILD_DIR)/%.html : $(SRC_DIR)/%.md
 	$(TOOLS_DIR)/bin/cmark $< > $@
 
+# Copy all install source files to the build directory.
+INSTALL_SRC_FILES := $(SRC_DIR)/.htaccess
+INSTALL_FILES := $(INSTALL_SRC_FILES:$(SRC_DIR)/%=$(BUILD_DIR)/%)
+
+# Add install files to the Windjay wiki target.
+windjay_wiki: $(INSTALL_FILES)
+
+# Rule to copy an install source file to the build directory.
+$(BUILD_DIR)% : $(SRC_DIR)/%
+	cp $< $@
+
 
 #
 # Tools target.
@@ -109,4 +121,19 @@ tools/bin/cmark: $(TOOLS_DIR)
 	make -C cmark test
 	make -C cmark install
 	rm -Rf cmark
+
+
+################################################################################
+#
+# Functions.
+#
+
+#
+# Return the list of files in the directory specified by $(1).
+#
+#   $(1)                    Directory from which to list files.
+#
+
+list_files = $(addprefix $(1)/,$(shell ls -1A $(1)))
+
 
